@@ -1,0 +1,4 @@
+Changed several secrets related feature flags.
+* The `--beta-testing-secrets-enabled` option, deprecated for several months, is now removed. Use `--secrets` as its replacement.
+* `--allow-untrusted-validators` renamed to `--allow-custom-validators`.
+* The Semgrep scan command `--historical-secrets-targets` is now `--historical-secrets`, aligning with the Semgrep CI command for consistency.
