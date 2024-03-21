@@ -347,7 +347,7 @@ function pcre2_firstcodeunit_stub(v_rex) {
                 if (ret != 0) {
                     raise_internal_error("pcre2_firstcodeunit_stub");
                 }
-                return libpcre2.getValue(firstcodetype_ptr, "i32");
+                return libpcre2.getValue(firstcodeunit_ptr, "i32");
             });
 
             return [var_Char, firstcodeunit];
@@ -376,7 +376,7 @@ function pcre2_lastcodeunit_stub(v_rex) {
             if (ret != 0) {
                 raise_internal_error("pcre2_lastcodeunit_stub");
             }
-            return libpcre2.getValue(lastcodetype_ptr, "i32");
+            return libpcre2.getValue(lastcodeunit_ptr, "i32");
         });
 
         return caml_alloc_some(lastcodeunit);
@@ -539,7 +539,7 @@ function pcre2_names_stub(v_rex) {
 //Requires: caml_invalid_argument
 function pcre2_substring_number_from_name_stub_bc(v_rex, v_name) {
     const [str, _] = cstring_of_jsstring(v_name);
-    const ret = libpcre2._pcre2_get_substring_number_from_name_8(v_rex.rex, str);
+    const ret = libpcre2._pcre2_substring_number_from_name_8(v_rex.rex, str);
     libpcre2._free(str);
 
     if (ret == PCRE2_ERROR_NOSUBSTRING) {

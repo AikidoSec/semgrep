@@ -155,10 +155,10 @@ describe("pcre2-ocaml stubs", () => {
 
         stubs.pcre2_exec_stub_bc(0, regex, 0, 0, subject, [0, 0, 0, 0], 0, 0);
 
-        expect(stubs.pcre2_get_stringnumber_stub_bc(regex, "numbers")).toEqual(1);
-        expect(stubs.pcre2_get_stringnumber_stub_bc(regex, "letters")).toEqual(2);
+        expect(stubs.pcre2_substring_number_from_name_stub_bc(regex, "numbers")).toEqual(1);
+        expect(stubs.pcre2_substring_number_from_name_stub_bc(regex, "letters")).toEqual(2);
 
-        expect(() => stubs.pcre2_get_stringnumber_stub_bc(regex, "foobar")).toThrow(
+        expect(() => stubs.pcre2_substring_number_from_name_stub_bc(regex, "foobar")).toThrow(
             "invalid argument"
         );
     });
