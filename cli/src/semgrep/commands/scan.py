@@ -408,11 +408,11 @@ def scan_options(func: Callable) -> Callable:
 # rely on their existence, or their output being stable
 @click.option("--dump-engine-path", is_flag=True, hidden=True)
 @click.option(
-    "--beta-testing-secrets-enabled",
+    "--secrets",
     "run_secrets_flag",
     is_flag=True,
     hidden=True,
-    help="Contact support@semgrep.com for more informationon this.",
+    help="Contact support@semgrep.com for more information on this.",
 )
 @click.option(
     "--historical-secrets",
@@ -497,7 +497,7 @@ def scan(
     # Handled error outside engine type for more actionable advice.
     if run_secrets_flag and requested_engine is EngineType.OSS:
         abort(
-            "The flags --beta-testing-secrets-enabled and --oss are incompatible. Semgrep Secrets is a proprietary extension."
+            "The flags --secrets and --oss are incompatible. Semgrep Secrets is a proprietary extension."
         )
 
     engine_type = EngineType.decide_engine_type(

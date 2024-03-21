@@ -515,11 +515,9 @@ let o_junit_xml : bool Term.t =
 
 let o_secrets : bool Term.t =
   let info =
-    Arg.info
-      [ "beta-testing-secrets-enabled" ]
+    Arg.info [ "secrets" ]
       ~doc:
-        {|Please use --secrets instead of --beta-testing-secrets.
-          Requires Semgrep Secrets, contact support@semgrep.com for more
+        {|Requires Semgrep Secrets, contact support@semgrep.com for more
           information on this.|}
   in
   Arg.value (Arg.flag info)
@@ -970,8 +968,7 @@ let cmdline_term caps ~allow_empty_config : conf Term.t =
     let engine_type =
       (* This first bit just rules out mutually exclusive options. *)
       if oss && secrets then
-        Error.abort
-          "Mutually exclusive options --oss/--beta-testing-secrets-enabled";
+        Error.abort "Mutually exclusive options --oss/--secrets";
       if
         [ oss; pro_lang; pro_intrafile; pro ]
         |> List.filter Fun.id |> List.length > 1
