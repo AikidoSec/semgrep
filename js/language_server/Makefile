@@ -37,7 +37,7 @@ node_modules/.package-lock.json: package-lock.json
 ../tree-sitter/dist/tree-sitter.o:
 	$(MAKE) -C ../tree-sitter dist/tree-sitter.o
 
-dist/language-server-wasm.js: ../libyaml/dist/libyaml.o ../libpcre/dist/libpcre.a ../tree-sitter/dist/tree-sitter.o $(LANGUAGES:%=../languages/%/dist/semgrep-parser.o)
+dist/language-server-wasm.js: ../libyaml/dist/libyaml.o ../libpcre/dist/libpcre.a ../libpcre2/dist/libpcre2-8.a ../tree-sitter/dist/tree-sitter.o $(LANGUAGES:%=../languages/%/dist/semgrep-parser.o)
 	mkdir -p dist
 	emcc \
 		-O3 \
