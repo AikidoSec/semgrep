@@ -418,6 +418,7 @@ def scan_options(func: Callable) -> Callable:
     "--historical-secrets",
     "historical_secrets",
     is_flag=True,
+    is_hidden=True,
 )
 @scan_options
 @handle_command_errors

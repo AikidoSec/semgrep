@@ -84,7 +84,10 @@ let o_code : bool Term.t =
   Arg.value (Arg.flag info)
 
 let o_historical_secrets : bool Term.t =
-  let info = Arg.info [ "historical-secrets" ] in
+  let info =
+    Arg.info [ "historical-secrets" ]
+      ~doc:{|Search git commit history for valid secrets.|}
+  in
   Arg.value (Arg.flag info)
 
 let o_suppress_errors : bool Term.t =

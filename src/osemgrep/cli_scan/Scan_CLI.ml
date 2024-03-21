@@ -514,12 +514,7 @@ let o_junit_xml : bool Term.t =
 (* ------------------------------------------------------------------ *)
 
 let o_secrets : bool Term.t =
-  let info =
-    Arg.info [ "secrets" ]
-      ~doc:
-        {|Requires Semgrep Secrets, contact support@semgrep.com for more
-          information on this.|}
-  in
+  let info = Arg.info [ "secrets" ] ~doc:{|Run Semgrep Secrets product.|} in
   Arg.value (Arg.flag info)
 
 let o_no_secrets_validation : bool Term.t =
