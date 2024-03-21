@@ -77,7 +77,7 @@ describe("pcre2-ocaml stubs", () => {
         const stubs = require("../libpcre2");
         stubs.pcre2_ocaml_init();
         expect(() => stubs.pcre2_compile_stub_bc(0, 0, "(")).toThrow(
-            "caml raise: {tag: 0, arg: missing closing parenthesis,2}"
+            "caml raise: {tag: 0, arg: missing closing parenthesis,1}"
         );
     });
 

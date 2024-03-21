@@ -1,5 +1,3 @@
-const {log} = require("console");
-
 var libpcre2 = globalThis.LibPcre2Module;
 
 const NULL = 0;
@@ -218,9 +216,9 @@ function pcre2_config_stackrecurse_stub() {return pcre2_config_i32(PCRE2_CONFIG_
 function cstring_of_jsstring(js_string) {
     const array = libpcre2.intArrayFromString(js_string);
     const length = array.length;
-    const ptr = libpcre2._malloc(length + 1);
+    const ptr = libpcre2._malloc(length);
     libpcre2.writeArrayToMemory(array, ptr);
-    return [ptr, length];
+    return [ptr, length - 1];
 }
 
 //Provides: pcre2_compile_stub_bc
@@ -424,8 +422,6 @@ function pcre2_exec_stub0(
     v_maybe_cof,
     v_workspace_ptr
 ) {
-    var v_subj = caml_jsstring_of_string(v_subj);
-
     var ret;
     var is_dfa = !!v_workspace_ptr;
 
