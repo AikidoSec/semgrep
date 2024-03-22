@@ -68,7 +68,7 @@ Code to compile parsers with emcc, and to also as separate js_of_ocaml files so 
 
 ### libpcre, libpcre2, libyaml, tree-sitter
 
-Tree sitter, PCRE and YAML C bindings. More emcc stuff
+Tree sitter, PCRE, PCRE2 and YAML C bindings. More emcc stuff
 
 ### shared, node_shared
 
