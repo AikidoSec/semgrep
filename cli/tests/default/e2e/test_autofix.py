@@ -45,6 +45,8 @@ from semgrep.constants import OutputFormat
             "rules/autofix/terraform-ec2-instance-metadata-options.yaml",
             "autofix/terraform-ec2-instance-metadata-options.hcl",
         ),
+        ("rules/autofix/delete-partial-line.yaml", "autofix/delete-partial-line.py"),
+        ("rules/autofix/utf-8.yaml", "autofix/utf-8.py"),
     ],
 )
 def test_autofix(
