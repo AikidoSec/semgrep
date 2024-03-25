@@ -523,7 +523,7 @@ function pcre2_firstcodeunit_stub(v_rex) {
 }
 
 //Provides: pcre2_lastcodeunit_stub
-//Requires: libpcre2, caml_alloc_some, pcre2_auto_malloc, PCRE2_INFO_LASTCODETYPE, PCRE2_INFO_LASTCODEUNIT, raise_internal_error
+//Requires: libpcre2, pcre2_auto_malloc, PCRE2_INFO_LASTCODETYPE, PCRE2_INFO_LASTCODEUNIT, raise_internal_error
 function pcre2_lastcodeunit_stub(v_rex) {
     const lastcodetype = pcre2_auto_malloc([4], ([lastcodetype_ptr]) => {
         const ret = libpcre2._pcre2_pattern_info_stub(v_rex, PCRE2_INFO_LASTCODETYPE, lastcodetype_ptr);
@@ -546,7 +546,7 @@ function pcre2_lastcodeunit_stub(v_rex) {
             return libpcre2.getValue(lastcodeunit_ptr, "i32");
         });
 
-        return caml_alloc_some(lastcodeunit);
+        return [0, lastcodeunit];
     }
 }
 
