@@ -146,7 +146,6 @@ def fix_head_if_github_action(metadata: GitMeta) -> None:
     "--secrets",
     "run_secrets_flag",
     is_flag=True,
-    hidden=True,
 )
 @click.option(
     "--suppress-errors/--no-suppress-errors",
