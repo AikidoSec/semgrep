@@ -583,9 +583,9 @@ function handle_pcre2_match_result(ovec_ptr, v_ovec, ovec_len, subj_start, ret) 
     }
 }
 
-//Provides: pcre2_exec_stub0
+//Provides: pcre2_match_stub0
 //Requires: libpcre2, caml_invalid_argument, cstring_of_jsstring, handle_match_error, handle_pcre2_match_result, NULL
-function pcre2_exec_stub0(
+function pcre2_match_stub0(
     v_opt,
     v_rex,
     v_pos,
@@ -606,11 +606,11 @@ function pcre2_exec_stub0(
     var ovec_len = v_ovec.length - 1; // Wosize_val(v_ovec)
 
     if (!(subj_start <= pos && pos <= len)) {
-        caml_invalid_argument("Pcre.pcre_exec_stub: illegal position");
+        caml_invalid_argument("Pcre2.pcre2_match_stub: illegal position");
     }
 
     if (!(0 <= subj_start && subj_start <= len)) {
-        caml_invalid_argument("Pcre.pcre_exec_stub: illegal subject start");
+        caml_invalid_argument("Pcre2.pcre2_match_stub: illegal subject start");
     }
 
     pos -= subj_start;
@@ -645,7 +645,7 @@ function pcre2_exec_stub0(
 
         if (ret < 0) {
             libpcre2._pcre2_match_data_free_8(match_data);
-            handle_match_error("pcre_exec_stub", ret);
+            handle_match_error("pcre2_match_stub", ret);
         } else {
             handle_pcre2_match_result(ovec_ptr, v_ovec, ovec_len, subj_start, ret);
         }
@@ -659,9 +659,9 @@ function pcre2_exec_stub0(
 }
 
 
-//Provides: pcre2_exec_stub_bc
-//Requires: pcre2_exec_stub0, NULL
-function pcre2_exec_stub_bc(
+//Provides: pcre2_match_stub_bc
+//Requires: pcre2_match_stub0, NULL
+function pcre2_match_stub_bc(
     v_opt,
     v_rex,
     v_pos,
@@ -670,7 +670,7 @@ function pcre2_exec_stub_bc(
     v_ovec,
     v_maybe_cof,
 ) {
-    return pcre2_exec_stub0(v_opt, v_rex, v_pos, v_subj_start, v_subj, v_ovec, v_maybe_cof, NULL);
+    return pcre2_match_stub0(v_opt, v_rex, v_pos, v_subj_start, v_subj, v_ovec, v_maybe_cof, NULL);
 }
 
 //Provides: pcre2_names_stub
@@ -718,7 +718,7 @@ function pcre2_substring_number_from_name_stub_bc(v_rex, v_name) {
 }
 
 //Always
-//Requires: pcre2_ocaml_init, pcre2_version_stub, pcre2_config_unicode_stub, pcre2_config_newline_stub, pcre2_config_link_size_stub_bc, pcre2_config_match_limit_stub_bc, pcre2_config_depth_limit_stub_bc, pcre2_config_stackrecurse_stub, pcre2_compile_stub_bc, pcre2_exec_stub_bc, pcre2_substring_number_from_name_stub_bc
+//Requires: pcre2_ocaml_init, pcre2_version_stub, pcre2_config_unicode_stub, pcre2_config_newline_stub, pcre2_config_link_size_stub_bc, pcre2_config_match_limit_stub_bc, pcre2_config_depth_limit_stub_bc, pcre2_config_stackrecurse_stub, pcre2_compile_stub_bc, pcre2_match_stub_bc, pcre2_substring_number_from_name_stub_bc
 (() => {
     if (globalThis.exposePcreStubsForTesting) {
         module.exports = {
@@ -731,7 +731,7 @@ function pcre2_substring_number_from_name_stub_bc(v_rex, v_name) {
             pcre2_config_depth_limit_stub_bc,
             pcre2_config_stackrecurse_stub,
             pcre2_compile_stub_bc,
-            pcre2_exec_stub_bc,
+            pcre2_match_stub_bc,
             pcre2_substring_number_from_name_stub_bc
         };
     }

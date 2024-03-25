@@ -101,7 +101,7 @@ describe("pcre2-ocaml stubs", () => {
         const subject_start = 3;
         const ovec = [0, 0, 0, 0];
 
-        stubs.pcre2_exec_stub_bc(
+        stubs.pcre2_match_stub_bc(
             0,
             regex,
             subject_start,
@@ -113,7 +113,7 @@ describe("pcre2-ocaml stubs", () => {
         );
         expect(subject.slice(ovec[1], ovec[2])).toEqual("bar");
 
-        stubs.pcre2_exec_stub_bc(
+        stubs.pcre2_match_stub_bc(
             0,
             regex,
             ovec[2],
@@ -125,7 +125,7 @@ describe("pcre2-ocaml stubs", () => {
         );
         expect(subject.slice(ovec[1], ovec[2])).toEqual("baz");
 
-        stubs.pcre2_exec_stub_bc(
+        stubs.pcre2_match_stub_bc(
             0,
             regex,
             ovec[2],
@@ -138,7 +138,7 @@ describe("pcre2-ocaml stubs", () => {
         expect(subject.slice(ovec[1], ovec[2])).toEqual("quux");
 
         expect(() =>
-            stubs.pcre2_exec_stub_bc(0, regex, ovec[2], 0, subject, ovec, 0, 0)
+            stubs.pcre2_match_stub_bc(0, regex, ovec[2], 0, subject, ovec, 0, 0)
         ).toThrow(NotFoundError);
     });
 
@@ -153,7 +153,7 @@ describe("pcre2-ocaml stubs", () => {
         );
         const subject = "123abc";
 
-        stubs.pcre2_exec_stub_bc(0, regex, 0, 0, subject, [0, 0, 0, 0], 0, 0);
+        stubs.pcre2_match_stub_bc(0, regex, 0, 0, subject, [0, 0, 0, 0], 0, 0);
 
         expect(stubs.pcre2_substring_number_from_name_stub_bc(regex, "numbers")).toEqual(1);
         expect(stubs.pcre2_substring_number_from_name_stub_bc(regex, "letters")).toEqual(2);
