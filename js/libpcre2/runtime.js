@@ -692,7 +692,7 @@ function pcre2_names_stub(v_rex) {
 
             const name_count = libpcre2.getValue(name_count_ptr, "i32");
             const entry_size = libpcre2.getValue(entry_size_ptr, "i32");
-            var tbl_ptr = libpcre2.getValue(tbl_ptr_ptr, "*i8");
+            var tbl_ptr = libpcre2.getValue(tbl_ptr_ptr, "i8*");
 
             for (var i = 0; i < name_count; ++i) {
                 result[i] = libpcre2.UTF8ToString(tbl_ptr + 2);
