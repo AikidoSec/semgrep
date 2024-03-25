@@ -83,6 +83,14 @@ let o_code : bool Term.t =
   let info = Arg.info [ "code" ] ~doc:{|Run Semgrep Code (SAST) product.|} in
   Arg.value (Arg.flag info)
 
+let o_secrets : bool Term.t =
+  let info =
+    Arg.info [ "secrets" ]
+      ~doc:
+        {|Run Semgrep Secrets product, including support for secret validation.|}
+  in
+  Arg.value (Arg.flag info)
+
 let o_historical_secrets : bool Term.t =
   let info =
     Arg.info [ "historical-secrets" ]
@@ -111,17 +119,19 @@ let cmdline_term caps : conf Term.t =
    * it below so we can get a nice man page documenting those environment
    * variables (Romain's idea).
    *)
-  let combine scan_conf audit_on code dry_run _internal_ci_scan_results
+  let combine scan_conf audit_on code dry_run _internal_ci_scan_results secrets
       supply_chain suppress_errors _git_meta _github_meta _historical_secrets =
     let products =
-      (if code then [ `SAST ] else []) @ if supply_chain then [ `SCA ] else []
+      (if secrets then [ `Secrets ] else [])
+      @ (if code then [ `SAST ] else [])
+      @ if supply_chain then [ `SCA ] else []
     in
     { scan_conf; audit_on; dry_run; suppress_errors; products }
   in
   Term.(
     const combine
     $ Scan_CLI.cmdline_term caps ~allow_empty_config:true
-    $ o_audit_on $ o_code $ o_dry_run $ o_internal_ci_scan_results
+    $ o_audit_on $ o_code $ o_dry_run $ o_internal_ci_scan_results $ o_secrets
     $ o_supply_chain $ o_suppress_errors $ Git_metadata.env
     $ Github_metadata.env $ o_historical_secrets)
 
