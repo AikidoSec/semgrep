@@ -6,7 +6,7 @@
 (* Timeout in seconds.
  * So e.g. the perf of svalue-prop does not prevent rules from running on a file.
  * Note that 'Time_limit.set_timeout' cannot be nested. *)
-let svalue_prop_FIXPOINT_TIMEOUT = 0.1
+let svalue_prop_FIXPOINT_TIMEOUT = 0.5
 
 (* Bounds the number of times that we will follow an 'id_svalue' during
  * a cycle check. See 'Dataflow_svalue.no_cycles_in_svalue'. *)
